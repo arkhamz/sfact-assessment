@@ -1,0 +1,28 @@
+.data-viewer__outer-wrapper {
+    animation: fade-in 900ms ease;
+}
+
+.data-viewer__outer-wrapper.show-data {
+}
+
+.data-viewer__inner-wrapper {
+}
+
+.data-viewer__chart-container {
+    height: 100%;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .data-viewer__chart-container {
+        height: 200px;
+    }
+}

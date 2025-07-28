@@ -1,4 +1,3 @@
-import "./App.css";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { LaunchGrid } from "./components/launch-grid/LaunchGrid";
@@ -11,8 +10,9 @@ function App() {
         (l): l is NonNullable<typeof l> => l !== null
     );
 
-    //selected launch items by id
-    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]); //selected launch item ids
+    const [showDataViewer, setShowDataViewer] = useState<boolean>(false);
+    //showDataViewe
 
     const selectedLaunches = launches?.length
         ? launches.filter((l) => selectedIds?.includes(l.id!))
@@ -36,7 +36,7 @@ function App() {
     if (error) return <p>Error loading data</p>;
 
     return (
-        <>
+        <div className="app-wrapper">
             {launches?.length ? (
                 <>
                     <LaunchGrid
@@ -44,11 +44,13 @@ function App() {
                         selectedIds={selectedIds}
                         launches={launches}
                     />
-                    <DataViewer selectedLaunches={selectedLaunches} />
+
+                    {selectedIds?.length && selectedIds?.length > 1 ? (
+                        <DataViewer selectedLaunches={selectedLaunches} />
+                    ) : null}
                 </>
             ) : null}
-            selectedJobs
-        </>
+        </div>
     );
 }
 

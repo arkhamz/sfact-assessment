@@ -18,14 +18,18 @@ export function DataViewer({ selectedLaunches }: SelectedLaunchesProps) {
     });
 
     return (
-        <section className="data-viewer__outer-wrapper outer-wrapper">
+        <section
+            className={`data-viewer__outer-wrapper outer-wrapper ${
+                selectedLaunches ? "show-data" : ""
+            }`}
+        >
             <div className="data-viewer__inner-wrapper inner-wrapper">
                 <div className="data-viewer__chart-container">
                     <ReactApexChart
                         type="bar"
                         series={[
                             {
-                                name: "Energy Consumption (GJ)",
+                                name: " (GJ)",
                                 data: [...energyUsageInGj],
                             },
                         ]}
@@ -33,6 +37,8 @@ export function DataViewer({ selectedLaunches }: SelectedLaunchesProps) {
                             xaxis: { categories: [...missionNames] },
                             chart: { id: "energy-consumption-bar" },
                         }}
+                        height="100%"
+                        width="100%"
                     />
                 </div>
             </div>

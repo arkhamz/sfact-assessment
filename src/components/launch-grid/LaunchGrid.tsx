@@ -1,6 +1,7 @@
 import type { Launch } from "../../__generated__/graphql";
 import { getEstimatedRocketEnergyUsage } from "../../utils";
 import "./LaunchGrid.css";
+import { LaunchItem } from "./LaunchItem";
 
 type LaunchGridProps = {
     launches: Launch[];
@@ -22,80 +23,13 @@ export function LaunchGrid({
                               launchItem: Launch,
                               i: number
                           ) {
-                              const {
-                                  rocket,
-                                  id,
-                                  launch_date_utc,
-                                  mission_name,
-                                  launch_success,
-                                  launch_year,
-                                  launch_site,
-                              } = launchItem;
-                              const rocketMass =
-                                  launchItem?.rocket?.rocket?.mass?.kg;
-                              const rocketName = rocket?.rocket_name;
-                              const cleanDate = new Date(
-                                  launch_date_utc
-                              ).toDateString();
-                              const launchSite = launch_site?.site_name;
-
-                              const isSelected = selectedIds.includes(id!);
-                              const estimatedEnergyUsage =
-                                  getEstimatedRocketEnergyUsage(rocketMass!);
-
                               return (
-                                  <div
-                                      key={i}
-                                      className={`launch-grid__launch-item ${
-                                          isSelected ? "--selected" : ""
-                                      }`}
-                                      onClick={(e) => {
-                                          handleClick(id!);
-                                      }}
-                                  >
-                                      <span>
-                                          <strong>Mission:</strong>{" "}
-                                          {mission_name}
-                                      </span>
-                                      <span>
-                                          <strong>Rocket: </strong>
-                                          {rocketName}
-                                      </span>
-                                      {launch_year ? (
-                                          <span>
-                                              <strong>Date:</strong> {cleanDate}
-                                          </span>
-                                      ) : null}
-                                      <span>
-                                          <strong>Status:</strong>
-                                          {launch_success
-                                              ? "Success"
-                                              : "Failure"}
-                                      </span>
-
-                                      {launchSite ? (
-                                          <span>
-                                              <strong>Location:</strong>{" "}
-                                              {launchSite}
-                                          </span>
-                                      ) : null}
-                                      {rocketMass ? (
-                                          <span>
-                                              <strong>Mass:</strong>{" "}
-                                              {rocketMass} kg
-                                          </span>
-                                      ) : null}
-                                      {
-                                          <span>
-                                              <strong>Consumption:</strong>
-                                              {(
-                                                  estimatedEnergyUsage /
-                                                  1000000000
-                                              ).toFixed(0)}{" "}
-                                              GJ
-                                          </span>
-                                      }
-                                  </div>
+                                  <LaunchItem
+                                      key={launchItem.id!}
+                                      handleClick={handleClick}
+                                      launch={launchItem}
+                                      selectedIds={selectedIds}
+                                  />
                               );
                           })
                         : null}

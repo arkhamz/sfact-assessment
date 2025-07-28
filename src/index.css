@@ -1,38 +1,45 @@
 /* Basic general styling */
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 html,
 body,
 #root,
 .App {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
-html{
-  --content-width:1000px;
+html {
+    --content-width: 1280px;
 }
 
-body{
+body {
     background-color: #1b1b1b;
 }
 
-
-p,span,h1,h2,h3,h4,h5,h6,a{
-  color:whitesmoke
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    color: whitesmoke;
 }
 
-p{
-  line-height:26px;
+p {
+    line-height: 26px;
 }
 
-button{
-      height: fit-content;
+button {
+    height: fit-content;
     padding: 10px 24px;
     border-radius: 10px;
     outline: none;
@@ -40,34 +47,43 @@ button{
 }
 
 button.primary {
-    background-color:transparent;
+    background-color: transparent;
     border: 1px solid whitesmoke;
-    color:whitesmoke;
+    color: whitesmoke;
     transition: color 100ms ease-out, background-color 400ms ease-out;
 }
 
-button.primary:hover{
-   color:black;
-  background-color: white;
+button.primary:hover {
+    color: black;
+    background-color: white;
 }
 
 /* Layout styles */
-.outer-wrapper{
 
+.app-wrapper {
+    padding: 80px 0px;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
-.inner-wrapper{
-  max-width:var(--content-width);
-  padding:80px 16px;
+.outer-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
+.inner-wrapper {
+    max-width: var(--content-width);
+    padding: 80px 16px;
+}
 
-  @media (max-width:600px){
-    .inner-wrapper{
-      padding:40px 16px;
+@media (max-width: 600px) {
+    .inner-wrapper {
+        padding: 40px 16px;
     }
 
-    h1{
-      font-size:36px;
+    .app-wrapper {
+        flex-wrap: wrap-reverse;
+        padding-top: 0px;
     }
-  }
+}
