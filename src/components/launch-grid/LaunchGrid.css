@@ -1,0 +1,17 @@
+.launch-grid {
+}
+
+.launch-grid__launch-items {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 16px;
+}
+
+.launch-grid__launch-item {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    align-items: flex-start;
+}
