@@ -1,4 +1,4 @@
-import type { Launch, LaunchesPastResult } from "../../__generated__/graphql";
+import type { Launch } from "../../__generated__/graphql";
 import "./LaunchGrid.css";
 
 type LaunchGridProps = {
@@ -16,14 +16,20 @@ export function LaunchGrid({ launches }: LaunchGridProps) {
                               launchItem: Launch,
                               i: number
                           ) {
-                              const { rocket, launch_date_utc, mission_name } =
-                                  launchItem;
+                              const {
+                                  rocket,
+                                  launch_date_utc,
+                                  mission_name,
+                                  launch_success,
+                                  launch_site,
+                              } = launchItem;
                               const rocketMass =
                                   launchItem?.rocket?.rocket?.mass?.kg;
                               const rocketName = rocket?.rocket_name;
                               const cleanDate = new Date(
                                   launch_date_utc
                               ).toDateString();
+                              const launchSite = launch_site?.site_name;
 
                               return (
                                   <div
@@ -41,6 +47,19 @@ export function LaunchGrid({ launches }: LaunchGridProps) {
                                       <span>
                                           <strong>Date:</strong> {cleanDate}
                                       </span>
+                                      <span>
+                                          <strong>Status:</strong>
+                                          {launch_success
+                                              ? "Success"
+                                              : "Failure"}
+                                      </span>
+
+                                      {launchSite ? (
+                                          <span>
+                                              <strong>Location:</strong>{" "}
+                                              {launchSite}
+                                          </span>
+                                      ) : null}
                                       {rocketMass ? (
                                           <span>
                                               <strong>Mass:</strong>{" "}
