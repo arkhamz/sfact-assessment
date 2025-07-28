@@ -1,4 +1,5 @@
 import type { Launch } from "../../__generated__/graphql";
+import { getEstimatedRocketEnergyUsage } from "../../utils";
 import "./LaunchGrid.css";
 
 type LaunchGridProps = {
@@ -12,7 +13,6 @@ export function LaunchGrid({
     selectedIds,
     handleClick,
 }: LaunchGridProps) {
-    console.log(launches);
     return (
         <section className="launch-grid__outer-wrapper outer-wrapper">
             <div className="launch-grid__inner-wrapper inner-wrapper">
@@ -40,6 +40,8 @@ export function LaunchGrid({
                               const launchSite = launch_site?.site_name;
 
                               const isSelected = selectedIds.includes(id!);
+                              const estimatedEnergyUsage =
+                                  getEstimatedRocketEnergyUsage(rocketMass!);
 
                               return (
                                   <div
@@ -83,6 +85,16 @@ export function LaunchGrid({
                                               {rocketMass} kg
                                           </span>
                                       ) : null}
+                                      {
+                                          <span>
+                                              <strong>Consumption:</strong>
+                                              {(
+                                                  estimatedEnergyUsage /
+                                                  1000000000
+                                              ).toFixed(0)}{" "}
+                                              GJ
+                                          </span>
+                                      }
                                   </div>
                               );
                           })

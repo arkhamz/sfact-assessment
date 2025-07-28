@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { LaunchGrid } from "./components/launch-grid/LaunchGrid";
 import { GET_LAUNCHES } from "./queries";
+import { DataViewer } from "./components/data-viewer/DataViewer";
 
 function App() {
     const { loading, data: launchesData, error } = useQuery(GET_LAUNCHES);
@@ -12,7 +13,11 @@ function App() {
 
     //selected launch items by id
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
-    console.log(selectedIds);
+
+    const selectedLaunches = launches?.length
+        ? launches.filter((l) => selectedIds?.includes(l.id!))
+        : [];
+
     function handleClick(id: string) {
         //check if id exists in state
         const idExists = selectedIds?.length
@@ -33,12 +38,16 @@ function App() {
     return (
         <>
             {launches?.length ? (
-                <LaunchGrid
-                    handleClick={handleClick}
-                    selectedIds={selectedIds}
-                    launches={launches}
-                />
+                <>
+                    <LaunchGrid
+                        handleClick={handleClick}
+                        selectedIds={selectedIds}
+                        launches={launches}
+                    />
+                    <DataViewer selectedLaunches={selectedLaunches} />
+                </>
             ) : null}
+            selectedJobs
         </>
     );
 }
