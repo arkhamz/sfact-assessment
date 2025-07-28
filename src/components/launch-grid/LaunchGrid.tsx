@@ -3,9 +3,15 @@ import "./LaunchGrid.css";
 
 type LaunchGridProps = {
     launches: Launch[];
+    selectedIds: string[];
+    handleClick: (id: string) => void;
 };
 
-export function LaunchGrid({ launches }: LaunchGridProps) {
+export function LaunchGrid({
+    launches,
+    selectedIds,
+    handleClick,
+}: LaunchGridProps) {
     console.log(launches);
     return (
         <section className="launch-grid__outer-wrapper outer-wrapper">
@@ -18,9 +24,11 @@ export function LaunchGrid({ launches }: LaunchGridProps) {
                           ) {
                               const {
                                   rocket,
+                                  id,
                                   launch_date_utc,
                                   mission_name,
                                   launch_success,
+                                  launch_year,
                                   launch_site,
                               } = launchItem;
                               const rocketMass =
@@ -31,10 +39,17 @@ export function LaunchGrid({ launches }: LaunchGridProps) {
                               ).toDateString();
                               const launchSite = launch_site?.site_name;
 
+                              const isSelected = selectedIds.includes(id!);
+
                               return (
                                   <div
                                       key={i}
-                                      className="launch-grid__launch-item"
+                                      className={`launch-grid__launch-item ${
+                                          isSelected ? "--selected" : ""
+                                      }`}
+                                      onClick={(e) => {
+                                          handleClick(id!);
+                                      }}
                                   >
                                       <span>
                                           <strong>Mission:</strong>{" "}
@@ -44,9 +59,11 @@ export function LaunchGrid({ launches }: LaunchGridProps) {
                                           <strong>Rocket: </strong>
                                           {rocketName}
                                       </span>
-                                      <span>
-                                          <strong>Date:</strong> {cleanDate}
-                                      </span>
+                                      {launch_year ? (
+                                          <span>
+                                              <strong>Date:</strong> {cleanDate}
+                                          </span>
+                                      ) : null}
                                       <span>
                                           <strong>Status:</strong>
                                           {launch_success

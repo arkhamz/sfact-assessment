@@ -14,10 +14,10 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    ": typeof types.GetLaunchesDocument,
+    "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_year\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    ": typeof types.GetLaunchesDocument,
 };
 const documents: Documents = {
-    "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    ": types.GetLaunchesDocument,
+    "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_year\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    ": types.GetLaunchesDocument,
 };
 
 /**
@@ -37,7 +37,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    "): (typeof documents)["\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    "];
+export function gql(source: "\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_year\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    "): (typeof documents)["\nquery GetLaunches {\n  launchesPast(limit:10){\n    id\n    mission_name\n    launch_date_utc\n    launch_year\n    launch_success\n    launch_site {\n      site_name\n    }\n    rocket{\n        rocket_name\n        rocket{\n            mass {\n              kg\n            }\n        }\n    }\n  }\n}\n    "];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

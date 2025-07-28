@@ -6,6 +6,7 @@ query GetLaunches {
     id
     mission_name
     launch_date_utc
+    launch_year
     launch_success
     launch_site {
       site_name
