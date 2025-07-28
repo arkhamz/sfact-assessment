@@ -1,0 +1,4 @@
+schema: "https://main--spacex-l4uc6p.apollographos.net/graphql"
+extensions:
+  languageService:
+    cacheSchemaFileForLookup: true
