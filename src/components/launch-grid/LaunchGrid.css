@@ -60,8 +60,4 @@
     .additional-launch-data {
         display: none;
     }
-
-    .launch-grid__inner-wrapper {
-        padding-top: unset;
-    }
 }
