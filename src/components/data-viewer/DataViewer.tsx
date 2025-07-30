@@ -8,12 +8,9 @@ type SelectedLaunchesProps = {
 };
 
 export function DataViewer({ selectedLaunches }: SelectedLaunchesProps) {
-    const rocketMasses = selectedLaunches.map(
-        (l) => l?.rocket?.rocket?.mass?.kg
-    );
     const missionNames = selectedLaunches.map((l) => l?.mission_name);
-    const energyUsageInGj = rocketMasses.map((m) => {
-        const energyUsageGj = getEstimatedRocketEnergyUsage(m!) / 1000000000;
+    const energyUsageInGj = selectedLaunches.map((l) => {
+        const energyUsageGj = getEstimatedRocketEnergyUsage(l);
         return Number.parseInt(energyUsageGj.toFixed());
     });
 

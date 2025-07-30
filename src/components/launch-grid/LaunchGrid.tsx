@@ -1,5 +1,4 @@
 import type { Launch } from "../../__generated__/graphql";
-import { getEstimatedRocketEnergyUsage } from "../../utils";
 import "./LaunchGrid.css";
 import { LaunchItem } from "./LaunchItem";
 

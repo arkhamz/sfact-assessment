@@ -16,6 +16,9 @@ export type Scalars = {
   Float: { input: number; output: number; }
   Date: { input: any; output: any; }
   ObjectID: { input: any; output: any; }
+  _Any: { input: any; output: any; }
+  federation__FieldSet: { input: any; output: any; }
+  link__Import: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
   uuid: { input: any; output: any; }
 };
@@ -536,6 +539,7 @@ export type PayloadsFind = {
 
 export type Query = {
   __typename?: 'Query';
+  _service: _Service;
   capsule?: Maybe<Capsule>;
   capsules?: Maybe<Array<Maybe<Capsule>>>;
   capsulesPast?: Maybe<Array<Maybe<Capsule>>>;
@@ -1102,12 +1106,24 @@ export type Volume = {
   cubic_meters?: Maybe<Scalars['Int']['output']>;
 };
 
+export type _Service = {
+  __typename?: '_Service';
+  sdl?: Maybe<Scalars['String']['output']>;
+};
+
 /** conflict action */
 export enum Conflict_Action {
   /** ignore the insert on this row */
   Ignore = 'ignore',
   /** update the row with the given values */
   Update = 'update'
+}
+
+export enum Link__Purpose {
+  /** `EXECUTION` features provide metadata necessary for operation execution. */
+  Execution = 'EXECUTION',
+  /** `SECURITY` features provide metadata necessary to securely resolve fields. */
+  Security = 'SECURITY'
 }
 
 /** column ordering options */
@@ -1324,7 +1340,7 @@ export type Uuid_Comparison_Exp = {
 export type GetLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchesQuery = { __typename?: 'Query', launchesPast?: Array<{ __typename?: 'Launch', id?: string | null, mission_name?: string | null, launch_date_utc?: any | null, launch_year?: string | null, launch_success?: boolean | null, launch_site?: { __typename?: 'LaunchSite', site_name?: string | null } | null, rocket?: { __typename?: 'LaunchRocket', rocket_name?: string | null, rocket?: { __typename?: 'Rocket', mass?: { __typename?: 'Mass', kg?: number | null } | null } | null } | null } | null> | null };
+export type GetLaunchesQuery = { __typename?: 'Query', launchesPast?: Array<{ __typename?: 'Launch', id?: string | null, mission_name?: string | null, launch_date_utc?: any | null, launch_year?: string | null, launch_success?: boolean | null, launch_site?: { __typename?: 'LaunchSite', site_name?: string | null } | null, rocket?: { __typename?: 'LaunchRocket', rocket_name?: string | null, rocket?: { __typename?: 'Rocket', mass?: { __typename?: 'Mass', kg?: number | null } | null, payload_weights?: Array<{ __typename?: 'RocketPayloadWeight', kg?: number | null } | null> | null } | null } | null } | null> | null };
 
 
-export const GetLaunchesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLaunches"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"launchesPast"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"mission_name"}},{"kind":"Field","name":{"kind":"Name","value":"launch_date_utc"}},{"kind":"Field","name":{"kind":"Name","value":"launch_year"}},{"kind":"Field","name":{"kind":"Name","value":"launch_success"}},{"kind":"Field","name":{"kind":"Name","value":"launch_site"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"site_name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"rocket"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rocket_name"}},{"kind":"Field","name":{"kind":"Name","value":"rocket"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mass"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"kg"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLaunchesQuery, GetLaunchesQueryVariables>;
+export const GetLaunchesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLaunches"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"launchesPast"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"mission_name"}},{"kind":"Field","name":{"kind":"Name","value":"launch_date_utc"}},{"kind":"Field","name":{"kind":"Name","value":"launch_year"}},{"kind":"Field","name":{"kind":"Name","value":"launch_success"}},{"kind":"Field","name":{"kind":"Name","value":"launch_site"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"site_name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"rocket"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rocket_name"}},{"kind":"Field","name":{"kind":"Name","value":"rocket"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mass"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"kg"}}]}},{"kind":"Field","name":{"kind":"Name","value":"payload_weights"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"kg"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLaunchesQuery, GetLaunchesQueryVariables>;

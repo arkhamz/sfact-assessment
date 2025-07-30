@@ -17,6 +17,9 @@ query GetLaunches {
             mass {
               kg
             }
+            payload_weights {
+                    kg
+                }
         }
     }
   }

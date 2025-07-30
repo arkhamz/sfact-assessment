@@ -21,18 +21,14 @@ export function LaunchItem({
         mission_name,
         launch_success,
         launch_year,
-        launch_site,
     } = launch;
-    const rocketMass = launch?.rocket?.rocket?.mass?.kg;
+    const rocketMass = rocket?.rocket?.mass?.kg;
     const rocketName = rocket?.rocket_name;
+
     const cleanDate = new Date(launch_date_utc).toDateString();
-    const launchSite = launch_site?.site_name;
 
     const isSelected = selectedIds.includes(id!);
-    const estimatedEnergyUsage = getEstimatedRocketEnergyUsage(rocketMass!);
-
-    //click checkbox to track stats
-    // click item to show more data
+    const estimatedEnergyUsage = getEstimatedRocketEnergyUsage(launch);
 
     return (
         <div
@@ -78,12 +74,6 @@ export function LaunchItem({
                     <strong>Status:</strong>
                     {launch_success ? "Success" : "Failure"}
                 </span>
-
-                {launchSite ? (
-                    <span>
-                        <strong>Location:</strong> {launchSite}
-                    </span>
-                ) : null}
                 {rocketMass ? (
                     <span>
                         <strong>Mass:</strong> {rocketMass} kg
@@ -92,7 +82,7 @@ export function LaunchItem({
 
                 <span>
                     <strong>Consumption:</strong>
-                    {(estimatedEnergyUsage / 1000000000).toFixed(0)} GJ
+                    {estimatedEnergyUsage} GJ
                 </span>
             </div>
         </div>
