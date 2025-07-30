@@ -15,7 +15,7 @@ type LaunchItemProps = {
     handleCheck: (id: string) => void;
 };
 
-export function LaunchItem({
+export function LaunchGridItem({
     launch,
     selectedIds,
     handleCheck,
@@ -48,12 +48,7 @@ export function LaunchItem({
         >
             <CardHeader
                 title={
-                    <Typography
-                        sx={{
-                            color: "black",
-                        }}
-                        variant="h6"
-                    >
+                    <Typography color="text.primary" variant="h6">
                         Mission: {mission_name}
                     </Typography>
                 }

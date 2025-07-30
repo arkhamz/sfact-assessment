@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { LaunchGrid } from "./components/launch-grid/LaunchGrid";
 import { GET_LAUNCHES } from "./queries";
-import { DataViewer } from "./components/data-viewer/DataViewer";
+import { EnergyModal } from "./components/data-viewer/EnergyModal";
 
 function App() {
     const { loading, data: launchesData, error } = useQuery(GET_LAUNCHES);
@@ -43,7 +43,7 @@ function App() {
                         launches={launches}
                     />
                     {selectedIds?.length ? (
-                        <DataViewer selectedLaunches={selectedLaunches} />
+                        <EnergyModal launches={selectedLaunches} />
                     ) : null}
                 </>
             ) : null}

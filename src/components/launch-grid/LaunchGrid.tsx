@@ -1,6 +1,6 @@
 import type { Launch } from "../../__generated__/graphql";
 import "./LaunchGrid.css";
-import { LaunchItem } from "./LaunchItem";
+import { LaunchGridItem } from "./LaunchGridItem";
 
 type LaunchGridProps = {
     launches: Launch[];
@@ -18,12 +18,9 @@ export function LaunchGrid({
             <div className="launch-grid__inner-wrapper inner-wrapper">
                 <div className="launch-grid__launch-items">
                     {launches.length
-                        ? launches.map(function (
-                              launchItem: Launch,
-                              i: number
-                          ) {
+                        ? launches.map(function (launchItem: Launch) {
                               return (
-                                  <LaunchItem
+                                  <LaunchGridItem
                                       key={launchItem.id!}
                                       handleCheck={handleCheck}
                                       launch={launchItem}

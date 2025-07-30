@@ -1,6 +1,6 @@
 .launch-grid__launch-items {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
 }
 
@@ -9,7 +9,6 @@
     align-items: center;
     gap: 8px;
     position: relative;
-    z-index: 3;
 }
 
 @media (max-width: 600px) {

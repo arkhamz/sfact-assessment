@@ -2,6 +2,7 @@ import type { Launch } from "../../__generated__/graphql";
 import { getEstimatedRocketEnergyUsageInGj } from "../../utils";
 import "./DataViewer.css";
 import ReactApexChart from "react-apexcharts";
+import { Modal, Box, Button } from "@mui/material";
 
 type SelectedLaunchesProps = {
     selectedLaunches: Launch[];
@@ -31,7 +32,13 @@ export function DataViewer({ selectedLaunches }: SelectedLaunchesProps) {
                             },
                         ]}
                         options={{
-                            xaxis: { categories: [...missionNames] },
+                            xaxis: {
+                                categories: [...missionNames],
+                                title: { text: "Mission" },
+                            },
+                            yaxis: {
+                                title: { text: "Energy usage(Gj)" },
+                            },
                             chart: { id: "energy-consumption-bar" },
                         }}
                         height="100%"
