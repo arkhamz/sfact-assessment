@@ -89,9 +89,9 @@ The front end application should:
 <!--
 -   Allow the user to select multiple launches -->
 
--   Allow the user to request the estimated total energy usage for the selected
+<!-- -   Allow the user to request the estimated total energy usage for the selected
     launches
--   Display the estimated energy consumption for the selected launches.
+-   Display the estimated energy consumption for the selected launches. -->
 
 Note:
 
@@ -110,8 +110,8 @@ You are asked to create a simple application using [React](https://reactjs.org/)
 We would like to see at least:
 
 -   The application should consume an API and retrieve a list of items.
-<!-- -   A user should be able to view the list of items. -->
--   A user should be able to select some items in the list and view aggregated information about the items selected.
+    <!-- -   A user should be able to view the list of items. -->
+    <!-- -   A user should be able to select some items in the list and view aggregated information about the items selected. -->
 
 But it will be great if you can cover some of this topics which we consider will bring more substance to the use case presentation:
 

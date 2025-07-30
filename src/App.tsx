@@ -18,7 +18,7 @@ function App() {
         ? launches.filter((l) => selectedIds?.includes(l.id!))
         : [];
 
-    function handleClick(id: string) {
+    function handleCheck(id: string) {
         //check if id exists in state
         const idExists = selectedIds?.length
             ? selectedIds.some((i) => i === id)
@@ -40,7 +40,7 @@ function App() {
             {launches?.length ? (
                 <>
                     <LaunchGrid
-                        handleClick={handleClick}
+                        handleCheck={handleCheck}
                         selectedIds={selectedIds}
                         launches={launches}
                     />

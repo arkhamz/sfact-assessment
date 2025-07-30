@@ -6,13 +6,13 @@ import { LaunchItem } from "./LaunchItem";
 type LaunchGridProps = {
     launches: Launch[];
     selectedIds: string[];
-    handleClick: (id: string) => void;
+    handleCheck: (id: string) => void;
 };
 
 export function LaunchGrid({
     launches,
     selectedIds,
-    handleClick,
+    handleCheck,
 }: LaunchGridProps) {
     return (
         <section className="launch-grid__outer-wrapper outer-wrapper">
@@ -26,7 +26,7 @@ export function LaunchGrid({
                               return (
                                   <LaunchItem
                                       key={launchItem.id!}
-                                      handleClick={handleClick}
+                                      handleCheck={handleCheck}
                                       launch={launchItem}
                                       selectedIds={selectedIds}
                                   />

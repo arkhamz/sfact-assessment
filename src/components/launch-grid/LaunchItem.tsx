@@ -1,17 +1,19 @@
+import { useState } from "react";
 import type { Launch } from "../../__generated__/graphql";
 import { getEstimatedRocketEnergyUsage } from "../../utils";
 
 type LaunchItemProps = {
     launch: Launch;
     selectedIds: string[];
-    handleClick: (id: string) => void;
+    handleCheck: (id: string) => void;
 };
 
 export function LaunchItem({
     launch,
     selectedIds,
-    handleClick,
+    handleCheck,
 }: LaunchItemProps) {
+    const [showDetails, setShowDetails] = useState(false);
     const {
         rocket,
         id,
@@ -29,22 +31,40 @@ export function LaunchItem({
     const isSelected = selectedIds.includes(id!);
     const estimatedEnergyUsage = getEstimatedRocketEnergyUsage(rocketMass!);
 
+    //click checkbox to track stats
+    // click item to show more data
+
     return (
         <div
             className={`launch-grid__launch-item ${
                 isSelected ? "--selected" : ""
             }`}
             onClick={(e) => {
-                handleClick(id!);
+                setShowDetails(!showDetails);
             }}
         >
             <div className="launch-name">
                 <span>
                     <strong>Mission:</strong> {mission_name}
                 </span>
+                <div className="tracking-input">
+                    <input
+                        type="checkbox"
+                        onClick={(e) => e.stopPropagation()}
+                        name="tracking"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            e.stopPropagation();
+                            handleCheck(id!);
+                        }}
+                    />
+                </div>
             </div>
 
-            <div className="additional-launch-data">
+            <div
+                className={`additional-launch-data ${
+                    showDetails ? "show-data" : ""
+                }`}
+            >
                 <span>
                     <strong>Rocket: </strong>
                     {rocketName}
