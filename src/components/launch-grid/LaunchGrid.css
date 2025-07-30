@@ -61,7 +61,7 @@
         display: none;
     }
 
-    /* .additional-launch-data.show-data {
-        display: flex;
-    } */
+    .launch-grid__inner-wrapper {
+        padding-top: unset;
+    }
 }
