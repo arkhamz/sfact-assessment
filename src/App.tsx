@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState } from "react";
 import { LaunchGrid } from "./components/launch-grid/LaunchGrid";
 import { GET_LAUNCHES } from "./queries";
 import { DataViewer } from "./components/data-viewer/DataViewer";
@@ -11,8 +11,6 @@ function App() {
     );
 
     const [selectedIds, setSelectedIds] = useState<string[]>([]); //selected launch item ids
-    const [showDataViewer, setShowDataViewer] = useState<boolean>(false);
-    //showDataViewe
 
     const selectedLaunches = launches?.length
         ? launches.filter((l) => selectedIds?.includes(l.id!))
@@ -44,8 +42,7 @@ function App() {
                         selectedIds={selectedIds}
                         launches={launches}
                     />
-
-                    {selectedIds?.length && selectedIds?.length > 1 ? (
+                    {selectedIds?.length ? (
                         <DataViewer selectedLaunches={selectedLaunches} />
                     ) : null}
                 </>

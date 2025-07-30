@@ -9,7 +9,7 @@ The estimated energy can be calculated using some simple assumptions:
 
 import type { Launch } from "./__generated__/graphql";
 
-export function getEstimatedRocketEnergyUsage(launch: Launch) {
+export function getEstimatedRocketEnergyUsageInGj(launch: Launch) {
     //It costs about 15 kg of fuel bring 1 kg of mass to the Lower Earth Orbit
     const fuelPerKilogram = 15;
     //The fuel has an energetic value of 1.35\*10^7 Joules / kg of fuel

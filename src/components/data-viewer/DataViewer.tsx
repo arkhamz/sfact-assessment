@@ -1,5 +1,5 @@
 import type { Launch } from "../../__generated__/graphql";
-import { getEstimatedRocketEnergyUsage } from "../../utils";
+import { getEstimatedRocketEnergyUsageInGj } from "../../utils";
 import "./DataViewer.css";
 import ReactApexChart from "react-apexcharts";
 
@@ -10,7 +10,7 @@ type SelectedLaunchesProps = {
 export function DataViewer({ selectedLaunches }: SelectedLaunchesProps) {
     const missionNames = selectedLaunches.map((l) => l?.mission_name);
     const energyUsageInGj = selectedLaunches.map((l) => {
-        const energyUsageGj = getEstimatedRocketEnergyUsage(l);
+        const energyUsageGj = getEstimatedRocketEnergyUsageInGj(l);
         return Number.parseInt(energyUsageGj.toFixed());
     });
 
