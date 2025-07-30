@@ -1,4 +1,4 @@
-schema: "https://main--spacex-l4uc6p.apollographos.net/graphql"
+schema: "https://spacex-production.up.railway.app/graphql"
 extensions:
-  languageService:
-    cacheSchemaFileForLookup: true
+    languageService:
+        cacheSchemaFileForLookup: true
