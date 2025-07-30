@@ -7,7 +7,6 @@ import {
     CardHeader,
     Checkbox,
     Typography,
-    Box,
 } from "@mui/material";
 
 type LaunchItemProps = {
@@ -45,6 +44,7 @@ export function LaunchItem({
                 backgroundColor: isSelected ? "#e3f2fd" : "white",
                 border: isSelected ? "2px solid orange" : "1px solid white",
             }}
+            onClick={() => setShowDetails(!showDetails)}
         >
             <CardHeader
                 title={
@@ -69,26 +69,25 @@ export function LaunchItem({
             />
             {showDetails && (
                 <CardContent>
-                    <Typography>
+                    <Typography color="text.primary">
                         <strong>Rocket:</strong> {rocketName}
                     </Typography>
                     {launch_year && (
-                        <Typography>
+                        <Typography color="text.primary">
                             <strong>Date:</strong> {cleanDate}
                         </Typography>
                     )}
-                    <Typography>
+                    <Typography color="text.primary">
                         <strong>Status:</strong>{" "}
                         {launch_success ? "Success" : "Failure"}
                     </Typography>
                     {rocketMass && (
-                        <Typography>
+                        <Typography color="text.primary">
                             <strong>Mass:</strong> {rocketMass} kg
                         </Typography>
                     )}
-                    <Typography>
-                        <strong>Consumption:</strong>{" "}
-                        {(estimatedEnergyUsage / 1_000_000_000).toFixed(0)} GJ
+                    <Typography color="text.primary">
+                        <strong>Consumption:</strong> {estimatedEnergyUsage} GJ
                     </Typography>
                 </CardContent>
             )}
